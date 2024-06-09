@@ -1,19 +1,22 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-
+  background-color:#e4e4e4;
 }
 
 .App {
   text-align: center;
   position: relative;
+
 }
 .meal-container {
+  
+
   padding: 4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
-  align-content: flex-start;
+  /* align-content: flex-start; */
 }
 
 .card {

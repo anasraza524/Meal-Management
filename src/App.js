@@ -7,9 +7,7 @@ import axios from 'axios';
 function App() {
   const [pizza, setPizza] = useState({ allMeals: [], week1: [], week3: [], week2: [], week4: [] });
   const [addWeek, setAddWeek] = useState([]);
-  const [activeNav, setActiveNav] = useState('')
-  console.log("addWeek", addWeek);
-  console.log("pizza", pizza);
+  const [activeNav, setActiveNav] = useState('AllMeals')
 
 
   const pizzaData = async () => {
@@ -80,7 +78,7 @@ const handleSave = (tab) => {
   return (
     <div className="App">
       <MealBanner />
-      <Header setActiveNav={setActiveNav} handleSave={handleSave}/>
+      <Header setActiveNav={setActiveNav} handleSave={handleSave} activeNav={activeNav}/>
       <div className="meal-container">
         {handleNavChange()?.map((meal, index) => (
           <div

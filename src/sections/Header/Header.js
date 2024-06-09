@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import { Box } from '@mui/material';
 import DialogTitle from '@mui/material/DialogTitle';
 const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
-function Header({ setActiveNav , handleSave }) {
+function Header({ setActiveNav , handleSave,activeNav }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedWeek, setSelectedWeek] = useState('');
 
@@ -46,13 +46,13 @@ function Header({ setActiveNav , handleSave }) {
       
       <nav>
         <ul>
-          <li onClick={() => setActiveNav('AllMeals')}>All Meals</li>
-          <li onClick={() => setActiveNav('Week1')}>Week 1</li>
-          <li onClick={() => setActiveNav('Week2')}>Week 2</li>
-          <li onClick={() => setActiveNav('Week3')}>Week 3</li>
-          <li onClick={() => setActiveNav('Week4')}>Week 4</li>
+          <li style={{backgroundColor:activeNav=== "AllMeals"?"gray":"rgb(240, 237, 237)"}}  onClick={() => setActiveNav('AllMeals')}>All Meals</li>
+          <li style={{backgroundColor:activeNav=== "Week1"?"gray":"rgb(240, 237, 237)"}}  onClick={() => setActiveNav('Week1')}>Week 1</li>
+          <li style={{backgroundColor:activeNav=== "Week2"?"gray":"rgb(240, 237, 237)"}}  onClick={() => setActiveNav('Week2')}>Week 2</li>
+          <li style={{backgroundColor:activeNav=== "Week3"?"gray":"rgb(240, 237, 237)"}}  onClick={() => setActiveNav('Week3')}>Week 3</li>
+          <li style={{backgroundColor:activeNav=== "Week4"?"gray":"rgb(240, 237, 237)"}}  onClick={() => setActiveNav('Week4')}>Week 4</li>
         </ul>
-        <button onClick={()=>setIsDialogOpen(true)} className="add-to-week">Add to Week</button>
+        <Button variant="contained" onClick={()=>setIsDialogOpen(true)} className="add-to-week">Add to Week</Button>
       </nav>
     </div>
   );
