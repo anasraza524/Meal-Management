@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 import './Header.css';
-import { Dialog, DialogTitle, DialogContent, Button, Box, Typography } from '@mui/material';
-
-function Header({ setActiveNav }) {
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import { Box } from '@mui/material';
+import DialogTitle from '@mui/material/DialogTitle';
+const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+function Header({ setActiveNav , handleSave }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedWeek, setSelectedWeek] = useState(null);
+  const [selectedWeek, setSelectedWeek] = useState('');
 
 
-  const handleSave = (selectedWeek) => {
+  const handleClose = () => {
     setIsDialogOpen(false);
   };
-
   return (
-    <header className="header">
-      <Dialog open={isDialogOpen} onClose={false}>
+    <div className="header">
+      <Dialog open={isDialogOpen} onClose={handleClose} 
+       aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        >
         <DialogTitle>Select Week</DialogTitle>
         <DialogContent>
           <Box display="flex" justifyContent="center" mb={2}>
-            {['Week 1', 'Week 2', 'Week 3', 'Week 4'].map((week, index) => (
+            {weeks.map((week, index)=> (
               <Button
                 key={index}
                 variant={selectedWeek === week ? 'contained' : 'outlined'}
-                color={selectedWeek === week ? 'primary' : 'default'}
                 onClick={() => setSelectedWeek(week)}
                 style={{ margin: '0 10px' }}
               >
@@ -30,12 +37,13 @@ function Header({ setActiveNav }) {
             ))}
           </Box>
           <Box display="flex" justifyContent="center">
-            <Button variant="contained" color="primary" onClick={() => handleSave(selectedWeek)}>
+            <Button variant="contained" color="primary" onClick={() => {handleSave(selectedWeek);setIsDialogOpen(false);}}>
               Save
             </Button>
           </Box>
         </DialogContent>
       </Dialog>
+      
       <nav>
         <ul>
           <li onClick={() => setActiveNav('AllMeals')}>All Meals</li>
@@ -46,7 +54,7 @@ function Header({ setActiveNav }) {
         </ul>
         <button onClick={()=>setIsDialogOpen(true)} className="add-to-week">Add to Week</button>
       </nav>
-    </header>
+    </div>
   );
 }
 

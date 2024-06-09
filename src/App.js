@@ -8,7 +8,9 @@ function App() {
   const [pizza, setPizza] = useState({ allMeals: [], week1: [], week3: [], week2: [], week4: [] });
   const [addWeek, setAddWeek] = useState([]);
   const [activeNav, setActiveNav] = useState('')
-  console.log("activeNav", activeNav);
+  console.log("addWeek", addWeek);
+  console.log("pizza", pizza);
+
 
   const pizzaData = async () => {
     try {
@@ -30,7 +32,29 @@ function App() {
   useEffect(() => {
     pizzaData();
   }, []);
+const handleSave = (tab) => { 
 
+  switch (tab) {
+    case 'Week 1':
+      setPizza({...pizza,week1:addWeek})
+      break;
+    case 'Week 2':
+      setPizza({...pizza,week2:addWeek})
+      break;
+    case 'Week 3':
+      setPizza({...pizza,week3:addWeek})
+      break;
+    case 'Week 4':
+      setPizza({...pizza,week4:addWeek})
+      break;
+    default:
+      break;
+
+
+  }
+  setAddWeek([]);
+  setActiveNav('');
+ }
   const handleCardClick = (meal) => {
     if (!addWeek.some(item => item.id === meal.id)) {
       setAddWeek([...addWeek, meal]);
@@ -56,7 +80,7 @@ function App() {
   return (
     <div className="App">
       <MealBanner />
-      <Header setActiveNav={setActiveNav} />
+      <Header setActiveNav={setActiveNav} handleSave={handleSave}/>
       <div className="meal-container">
         {handleNavChange()?.map((meal, index) => (
           <div
