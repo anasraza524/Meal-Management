@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './sections/Header/Header';
 import MealBanner from './sections/MealBanner/MealBanner';
 import axios from 'axios';
-
+import { Rating,Typography } from '@mui/material';
 function App() {
   const [pizza, setPizza] = useState({ allMeals: [], week1: [], week3: [], week2: [], week4: [] });
   const [addWeek, setAddWeek] = useState([]);
@@ -80,7 +80,9 @@ const handleSave = (tab) => {
       <MealBanner />
       <Header setActiveNav={setActiveNav} handleSave={handleSave} activeNav={activeNav}/>
       <div className="meal-container">
-        {handleNavChange()?.map((meal, index) => (
+        {
+        handleNavChange()?.length>0?
+        handleNavChange()?.map((meal, index) => (
           <div
             className="card"
             key={index}
@@ -97,10 +99,10 @@ const handleSave = (tab) => {
               <h3>{meal.name}</h3>
               <p>{meal.instructions[0]}</p>
               <p><strong>Cuisine:</strong> {meal.cuisine}</p>
-              <p><strong>Rating:</strong> {meal.rating} <span className="stars">★★★★★</span></p>
+              <p><strong>Rating:</strong> {meal.rating} <Rating name="size-small" defaultValue={meal.rating} size="small" /></p>
             </div>
           </div>
-        ))}
+        )):<Typography variant="h3" style={{color:"gray"}}>No Meals Found</Typography>}
       </div>
     </div>
   );
