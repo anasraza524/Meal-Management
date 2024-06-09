@@ -99,7 +99,7 @@ const handleSave = (tab) => {
               <h3>{meal.name}</h3>
               <p>{meal.instructions[0]}</p>
               <p><strong>Cuisine:</strong> {meal.cuisine}</p>
-              <p><strong>Rating:</strong> {meal.rating} <Rating name="size-small" defaultValue={meal.rating} size="small" /></p>
+              <p><strong>Rating:</strong> {meal.rating} <Rating name="size-small" readOnly  defaultValue={meal.rating} size="small" /></p>
             </div>
           </div>
         )):<Typography variant="h3" style={{color:"gray"}}>No Meals Found</Typography>}
